@@ -2,7 +2,9 @@ package com.example.quizrestwebapp.Question;
 
 import com.example.quizrestwebapp.Answer.Answer;
 import com.example.quizrestwebapp.Quiz.Quiz;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
 
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +16,7 @@ public class Question {
     private @Id
     @GeneratedValue Long id;
     private String body;
+    @JsonIgnore
     private int rightAnswer;
     private int pointsForRightAnswer;
     private float percentOfPeopleRight;
@@ -28,10 +31,14 @@ public class Question {
                     int pointsForRightAnswer, float percentOfPeopleRight) {
 
         this.body = body;
-        this.answers = answers;
         this.rightAnswer = rightAnswer;
         this.pointsForRightAnswer = pointsForRightAnswer;
         this.percentOfPeopleRight = percentOfPeopleRight;
+        this.answers = answers;
+        for (Answer answer: answers){
+            answer.setQuestion(this);
+        }
+
     }
 
     public Question() {
@@ -70,6 +77,13 @@ public class Question {
         this.answers = answers;
     }
 
+    public void addAnswer(Answer answer) {
+        answers.add(answer);
+        answer.setQuestion(this);
+    }
+
+
+    @JsonIgnore
     public int getRightAnswer() {
         return rightAnswer;
     }

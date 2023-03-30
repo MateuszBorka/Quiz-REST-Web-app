@@ -1,5 +1,16 @@
+// What i learned from this project:
+//
+//Enums
+//ManyToOne, OneToMany realationships in JPA
+//
+//
+//
+//
+
+
 package config;
 
+import com.example.quizrestwebapp.Quiz.QuizFactory;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
@@ -29,5 +40,10 @@ public class ApplicationConfig {
         config.setMaximumPoolSize(10);
         config.setMinimumIdle(5);
         return new HikariDataSource(config);
+    }
+
+    @Bean
+    public QuizFactory quizFactory() {
+        return new QuizFactory();
     }
 }

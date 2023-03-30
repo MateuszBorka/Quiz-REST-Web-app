@@ -49,10 +49,6 @@ public class QuizController {
                 .collect(Collectors.toList());
 
         return CollectionModel.of(questions, linkTo(methodOn(QuizController.class).all()).withSelfRel());
-
-
-
-
     }
 
     @GetMapping("/api/quizzes/{id}")
