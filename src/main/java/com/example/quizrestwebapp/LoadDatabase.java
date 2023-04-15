@@ -1,16 +1,13 @@
 package com.example.quizrestwebapp;
 
-import com.example.quizrestwebapp.Answer.Answer;
-import com.example.quizrestwebapp.Question.Question;
-import com.example.quizrestwebapp.Quiz.Quiz;
-import com.example.quizrestwebapp.Quiz.QuizFactory;
-import com.example.quizrestwebapp.Quiz.QuizRepository;
+import com.example.quizrestwebapp.domain.*;
+import com.example.quizrestwebapp.repository.QuizRepository;
+import com.example.quizrestwebapp.repository.UserRepository;
+import com.example.quizrestwebapp.service.UserService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,17 +21,30 @@ public class LoadDatabase {
 
 
     private final QuizFactory quizFactory;
+    private final UserRepository userRepository;
+
+    private final UserService userService;
 
 
     @Autowired
-    public LoadDatabase(QuizFactory quizFactory) {
+    public LoadDatabase(QuizFactory quizFactory,
+                        UserRepository userRepository,
+                        UserService userService) {
         this.quizFactory = quizFactory;
+        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @Bean
     public CommandLineRunner initDatabase(QuizRepository quizRepository) {
 
         return args -> {
+
+
+            userService.createUser("anton", "1234", "USER");
+            userService.createUser("ivan", "12345", "ADMIN");
+
+
 
             List<Question> questions1 = new ArrayList<>();
             questions1.add(new Question("What is 2 + 2?",

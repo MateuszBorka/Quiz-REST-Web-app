@@ -10,7 +10,7 @@
 
 package config;
 
-import com.example.quizrestwebapp.Quiz.QuizFactory;
+import com.example.quizrestwebapp.domain.QuizFactory;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
