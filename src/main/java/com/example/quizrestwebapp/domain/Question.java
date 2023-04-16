@@ -2,6 +2,7 @@ package com.example.quizrestwebapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "questions")
+@NoArgsConstructor
 public class Question {
 
     private @Id
@@ -39,9 +41,6 @@ public class Question {
 
     }
 
-    public Question() {
-
-    }
 
     public Quiz getQuiz() {
         return quiz;

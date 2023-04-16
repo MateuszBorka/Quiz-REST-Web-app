@@ -1,12 +1,18 @@
 package com.example.quizrestwebapp.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "quizes")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Quiz {         //Todo add questions count, time limit
 
     private String title;
@@ -29,66 +35,6 @@ public class Quiz {         //Todo add questions count, time limit
         this.title = title;
         this.difficulty = difficulty;
         this.creatorNickname = creatorNickname;
-        this.questions = questions;
-    }
-
-    public Quiz() {
-
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public long getPlayedTimes() {
-        return playedTimes;
-    }
-
-    public void setPlayedTimes(long playedTimes) {
-        this.playedTimes = playedTimes;
-    }
-
-    public String getCreatorNickname() {
-        return creatorNickname;
-    }
-
-    public void setCreatorNickname(String creatorNickname) {
-        this.creatorNickname = creatorNickname;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
 

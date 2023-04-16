@@ -1,10 +1,14 @@
 package com.example.quizrestwebapp.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "role")
+@Getter
+@Setter
 public class UserRole implements GrantedAuthority {
 
     @Id
@@ -21,23 +25,6 @@ public class UserRole implements GrantedAuthority {
     public UserRole() {
 
     }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String getAuthority() {
         return name;
