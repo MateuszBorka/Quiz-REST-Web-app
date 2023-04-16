@@ -1,12 +1,20 @@
 package com.example.quizrestwebapp.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Set;
 import java.util.Collections;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     //Todo: add more fields. Time from registration, email, how much quizzes solved, solved quizzes, how much quizzes created, percentage of right answers.
@@ -14,10 +22,21 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private long id;
 
     private String username;
     private String password;
+
+    private String email;
+
+    private int points;
+
+    private int quizesSolved;
+
+    private int answeredRight;
+
+    private int answeredWrong;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles",
@@ -25,15 +44,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<UserRole> roles;
 
-    public User(String username, String password, Set<UserRole> roles) {
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
-
-    public User() {
-
-    }
 
     public long getId() {
         return id;
@@ -59,7 +69,7 @@ public class User {
         this.password = password;
     }
 
-    public Set<String> getRoleNames() {
+    public Set<String> getRoleNames() {     //TODO: rewrite this code
         if (roles.isEmpty()) {
             return Collections.emptySet();
         }

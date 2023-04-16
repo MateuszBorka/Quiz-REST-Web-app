@@ -13,7 +13,7 @@ import com.example.quizrestwebapp.service.AuthService;
 @RestController
 @RequestMapping("api")
 @RequiredArgsConstructor
-public class Controller {           //Todo: fix this class, original wasn't working too.
+public class HelloController {
 
     private final AuthService authService;
 

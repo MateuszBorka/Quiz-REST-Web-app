@@ -7,11 +7,13 @@ import com.example.quizrestwebapp.assembler.QuestionModelAssembler;
 import com.example.quizrestwebapp.domain.Quiz;
 import com.example.quizrestwebapp.exception.QuizNotFoundException;
 import com.example.quizrestwebapp.repository.QuizRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.stream.Collectors;
@@ -22,6 +24,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
+@RequestMapping("api/quizzes")
+@AllArgsConstructor
 public class QuizController {   //Todo reformat mapping
 
 
@@ -33,19 +37,8 @@ public class QuizController {   //Todo reformat mapping
 
     private final QuestionModelAssembler questionAssembler;
 
-    public QuizController(QuizRepository repository, QuizModelAssembler quizAssembler,
-                          QuizWithQuestionsModelAssembler quizWithQuestionsAssembler,
-                          QuestionModelAssembler questionAssembler) {
-        this.repository = repository;
-        this.quizAssembler = quizAssembler;
-        this.quizWithQuestionsAssembler = quizWithQuestionsAssembler;
-        this.questionAssembler = questionAssembler;
-
-    }
-
-
-    @GetMapping("/api/quizzes/{id}/questions")
-    @PreAuthorize("hasRole('User')")
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping("{id}/questions")
     public CollectionModel<EntityModel<Question>> getQuestionsByQuizId(@PathVariable Long id){
 
         Quiz quiz = repository.findById(id)
@@ -58,8 +51,8 @@ public class QuizController {   //Todo reformat mapping
         return CollectionModel.of(questions, linkTo(methodOn(QuizController.class).all()).withSelfRel());
     }
 
-    @GetMapping("/api/quizzes/{id}")
-    @PreAuthorize("hasRole('User')")
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping("{id}")
     public EntityModel<Quiz> getQuizById(@PathVariable Long id) {
         Quiz quiz = repository.findById(id)
                 .orElseThrow(() -> new QuizNotFoundException(id));
@@ -67,9 +60,8 @@ public class QuizController {   //Todo reformat mapping
         return quizWithQuestionsAssembler.toModel(quiz);
     }
 
-
-    @GetMapping("/api/quizzes")
-    @PreAuthorize("hasRole('User')")
+    @PreAuthorize("hasAuthority('USER')")
+    @GetMapping("/")
     public CollectionModel<EntityModel<Quiz>> all() {
         List<EntityModel<Quiz>> quizzes = repository.findAll().stream()
                 .map(quizAssembler::toModel)

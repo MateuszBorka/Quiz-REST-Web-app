@@ -15,7 +15,7 @@ import com.example.quizrestwebapp.domain.RefreshJwtRequest;
 @RestController
 @RequestMapping("api/auth")
 @RequiredArgsConstructor
-public class AuthController {           //Todo: recheck
+public class AuthController {
 
     private final AuthService authService;
 
