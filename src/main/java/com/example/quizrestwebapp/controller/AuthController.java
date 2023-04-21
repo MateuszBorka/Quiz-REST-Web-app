@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.quizrestwebapp.domain.JwtRequest;
-import com.example.quizrestwebapp.domain.JwtResponse;
+import com.example.quizrestwebapp.dto.JwtRequest;
+import com.example.quizrestwebapp.dto.JwtResponse;
 import com.example.quizrestwebapp.domain.RefreshJwtRequest;
 
 

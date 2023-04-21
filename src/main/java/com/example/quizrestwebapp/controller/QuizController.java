@@ -11,10 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
 import java.util.List;
@@ -68,6 +65,13 @@ public class QuizController {   //Todo reformat mapping
                 .collect(Collectors.toList());
 
         return CollectionModel.of(quizzes, linkTo(methodOn(QuizController.class).all()).withSelfRel());
+    }
+
+    @PreAuthorize("hasAuthority(USER)")
+    @PostMapping("{id}/submit")
+    public List<EntityModel<> checkAnswers(@PathVariable Long id){
+
+
     }
 
 

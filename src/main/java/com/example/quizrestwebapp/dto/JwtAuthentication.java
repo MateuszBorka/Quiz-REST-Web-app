@@ -1,5 +1,6 @@
-package com.example.quizrestwebapp.domain;
+package com.example.quizrestwebapp.dto;
 
+import com.example.quizrestwebapp.domain.UserRole;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.Authentication;

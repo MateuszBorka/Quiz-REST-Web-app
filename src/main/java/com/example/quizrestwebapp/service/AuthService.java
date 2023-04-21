@@ -1,8 +1,8 @@
 package com.example.quizrestwebapp.service;
 
-import com.example.quizrestwebapp.domain.JwtAuthentication;
-import com.example.quizrestwebapp.domain.JwtRequest;
-import com.example.quizrestwebapp.domain.JwtResponse;
+import com.example.quizrestwebapp.dto.JwtAuthentication;
+import com.example.quizrestwebapp.dto.JwtRequest;
+import com.example.quizrestwebapp.dto.JwtResponse;
 import com.example.quizrestwebapp.domain.User;
 import com.example.quizrestwebapp.exception.AuthException;
 import io.jsonwebtoken.Claims;
