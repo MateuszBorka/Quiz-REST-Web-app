@@ -30,11 +30,12 @@ public class UserService {
         return user;
     }
 
-    public void createUser(@NonNull String username, @NonNull String password, @NonNull String... roleNames){
+    public void createUser(@NonNull String username,  @NonNull String password, @NonNull String email, @NonNull String... roleNames){
 
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setEmail(email);
 
         Set<UserRole> roles = new HashSet<>();
         for (String role : roleNames){
