@@ -17,6 +17,7 @@ import org.springframework.web.filter.GenericFilterBean;
 import com.example.quizrestwebapp.dto.JwtAuthentication;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @Slf4j
 @Component
@@ -47,7 +48,5 @@ public class JwtFilter extends GenericFilterBean {
         }
         return null;
     }
-
-
 
 }

@@ -1,6 +1,6 @@
 package com.example.quizrestwebapp.service;
 
-import com.example.quizrestwebapp.domain.JwtAuthentication;
+import com.example.quizrestwebapp.dto.JwtAuthentication;
 import com.example.quizrestwebapp.domain.UserRole;
 import io.jsonwebtoken.Claims;
 import lombok.AccessLevel;

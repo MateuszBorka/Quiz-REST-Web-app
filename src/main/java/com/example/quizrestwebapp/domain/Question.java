@@ -2,77 +2,48 @@ package com.example.quizrestwebapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "questions")
+@Getter
+@Setter
 @NoArgsConstructor
 public class Question {
 
+    @JsonIgnore
     private @Id
     @GeneratedValue Long id;
     private String body;
-    @JsonIgnore
-    private int rightAnswer;
     private int pointsForRightAnswer;
     private float percentOfPeopleRight;
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answers;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
 
-    public Question(String body, List<Answer> answers, int rightAnswer,
+    public Question(String body, List<Answer> answers, Answer rightAnswer,
                     int pointsForRightAnswer, float percentOfPeopleRight) {
 
         this.body = body;
-        this.rightAnswer = rightAnswer;
         this.pointsForRightAnswer = pointsForRightAnswer;
         this.percentOfPeopleRight = percentOfPeopleRight;
         this.answers = answers;
         for (Answer answer: answers){
             answer.setQuestion(this);
+            answer.setRight(answer == rightAnswer);
         }
 
     }
 
-
-    public Quiz getQuiz() {
-        return quiz;
-    }
-
-    public void setQuiz(Quiz quiz) {
-        this.quiz = quiz;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
 
     public void addAnswer(Answer answer) {
         answers.add(answer);
@@ -81,12 +52,25 @@ public class Question {
 
 
     @JsonIgnore
-    public int getRightAnswer() {
-        return rightAnswer;
+    public Answer getRightAnswer() {
+
+        for (Answer answer : answers) {
+            if (answer.isRight()) {
+                return answer;
+            }
+        }
+
+        return null;
+
     }
 
-    public void setRightAnswer(int rightAnswer) {
-        this.rightAnswer = rightAnswer;
+    public void setRightAnswer(Answer rightAnswer) {
+        for (Answer answer : answers){
+            answer.setRight(false);
+            if (answer == rightAnswer){
+                answer.setRight(true);
+            }
+        }
     }
 
     public int getPointsForRightAnswer() {
@@ -105,28 +89,4 @@ public class Question {
         this.percentOfPeopleRight = percentOfPeopleRight;
     }
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "id=" + id +
-                ", body='" + body + '\'' +
-                ", answers=" + answers +
-                ", rightAnswer=" + rightAnswer +
-                ", pointsForRightAnswer=" + pointsForRightAnswer +
-                ", percentOfPeopleRight=" + percentOfPeopleRight +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Question question = (Question) o;
-        return rightAnswer == question.rightAnswer && pointsForRightAnswer == question.pointsForRightAnswer && Float.compare(question.percentOfPeopleRight, percentOfPeopleRight) == 0 && Objects.equals(id, question.id) && Objects.equals(body, question.body) && Objects.equals(answers, question.answers);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, body, answers, rightAnswer, pointsForRightAnswer, percentOfPeopleRight);
-    }
 }

@@ -32,7 +32,7 @@ public class User {
 
     private int points;
 
-    private int quizesSolved;
+    private int quizzesSolved;
 
     private int answeredRight;
 

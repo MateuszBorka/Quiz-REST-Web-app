@@ -5,6 +5,8 @@ import com.example.quizrestwebapp.assembler.QuizWithQuestionsModelAssembler;
 import com.example.quizrestwebapp.domain.Question;
 import com.example.quizrestwebapp.assembler.QuestionModelAssembler;
 import com.example.quizrestwebapp.domain.Quiz;
+import com.example.quizrestwebapp.dto.UserQuizAnswerRequest;
+import com.example.quizrestwebapp.dto.UserQuizAnswerResponse;
 import com.example.quizrestwebapp.exception.QuizNotFoundException;
 import com.example.quizrestwebapp.repository.QuizRepository;
 import lombok.AllArgsConstructor;
@@ -67,10 +69,11 @@ public class QuizController {   //Todo reformat mapping
         return CollectionModel.of(quizzes, linkTo(methodOn(QuizController.class).all()).withSelfRel());
     }
 
-    @PreAuthorize("hasAuthority(USER)")
+    @PreAuthorize("hasAuthority('USER')")
     @PostMapping("{id}/submit")
-    public List<EntityModel<> checkAnswers(@PathVariable Long id){
+    public EntityModel<UserQuizAnswerResponse> checkAnswers(@PathVariable Long id, @RequestBody UserQuizAnswerRequest request){
 
+        return null;
 
     }
 
