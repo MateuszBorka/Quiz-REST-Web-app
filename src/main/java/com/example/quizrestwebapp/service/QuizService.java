@@ -1,7 +1,6 @@
 package com.example.quizrestwebapp.service;
 
-import com.example.quizrestwebapp.domain.Answer;
-import com.example.quizrestwebapp.dto.UserAnswer;
+import com.example.quizrestwebapp.dto.AnswerAnalysis;
 import com.example.quizrestwebapp.repository.QuizRepository;
 import com.example.quizrestwebapp.domain.Question;
 import com.example.quizrestwebapp.domain.Quiz;
@@ -41,7 +40,24 @@ public class QuizService {
         }
     }
 
-    public List<Boolean> checkIfQuizAnswersRight(Long quizId, ArrayList<UserAnswer> userAnswers){
+//    public List<Boolean> checkIfQuizAnswersRight(Long quizId, ArrayList<UserAnswer> userAnswers){
+//        Optional<Quiz> quizOptional = quizRepository.findById(quizId);
+//        Quiz quiz;
+//        if (quizOptional.isPresent()) {
+//            quiz = quizOptional.get();
+//        } else {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Quiz not found");
+//        }
+//        List<Question> questions = quiz.getQuestions();
+//        ArrayList<Boolean> isRight = new ArrayList<>();
+//        for(int i = 0; i < userAnswers.size(); i++){
+//            isRight.add(Objects.equals(userAnswers.get(i).getBody(), questions.get(i).getBody()));
+//        }
+//        return isRight;
+//    }
+
+    public List<AnswerAnalysis> createAnswersAnalysis(Long quizId, ArrayList<String> userAnswers){
+
         Optional<Quiz> quizOptional = quizRepository.findById(quizId);
         Quiz quiz;
         if (quizOptional.isPresent()) {
@@ -50,11 +66,23 @@ public class QuizService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Quiz not found");
         }
         List<Question> questions = quiz.getQuestions();
-        ArrayList<Boolean> isRight = new ArrayList<>();
+
+
+        List<AnswerAnalysis> answerAnalysis = new ArrayList<>();
+
+
         for(int i = 0; i < userAnswers.size(); i++){
-            isRight.add(Objects.equals(userAnswers.get(i).getBody(), questions.get(i).getBody()));
+            AnswerAnalysis singleAnswer = new AnswerAnalysis();
+            singleAnswer.setUserAnswer(userAnswers.get(i));
+            singleAnswer.setRightAnswer(questions.get(i).getRightAnswer().getBody());
+            if (!Objects.equals(userAnswers.get(i), questions.get(i).getRightAnswer().getBody())){
+                singleAnswer.setPointsForQuestion(0);
+            } else {
+                singleAnswer.setPointsForQuestion(questions.get(i).getPointsForRightAnswer());
+            }
+            answerAnalysis.add(singleAnswer);
         }
-        return isRight;
+        return answerAnalysis;
     }
 
 
