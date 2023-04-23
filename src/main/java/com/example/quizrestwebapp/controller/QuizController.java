@@ -30,7 +30,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping("api/quizzes")
 @AllArgsConstructor
-public class QuizController {   //Todo reformat mapping
+public class QuizController {
 
 
     private final QuizRepository repository;
