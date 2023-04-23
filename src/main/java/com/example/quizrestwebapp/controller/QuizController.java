@@ -39,13 +39,14 @@ public class QuizController {   //Todo reformat mapping
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("{id}/questions")
     public CollectionModel<EntityModel<Question>> getQuestionsByQuizId(@PathVariable Long id){
-
+//    public CollectionModel<Question> getQuestionsByQuizId(@PathVariable Long id){
         Quiz quiz = repository.findById(id)
                 .orElseThrow(() -> new QuizNotFoundException(id));
 
         List<EntityModel<Question>> questions = quiz.getQuestions().stream()
                 .map(questionAssembler::toModel)
                 .collect(Collectors.toList());
+//        List<Question> questions = quiz.getQuestions();
 
         return CollectionModel.of(questions, linkTo(methodOn(QuizController.class).all()).withSelfRel());
     }
@@ -73,8 +74,7 @@ public class QuizController {   //Todo reformat mapping
     @PostMapping("{id}/submit")
     public EntityModel<UserQuizAnswerResponse> checkAnswers(@PathVariable Long id, @RequestBody UserQuizAnswerRequest request){
 
-        return null;
-
+        return null;  //Todo
     }
 
 

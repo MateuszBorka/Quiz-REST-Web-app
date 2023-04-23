@@ -19,6 +19,7 @@ public class Answer {
     @JsonIgnore
     private boolean isRight;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Question question;
