@@ -2,6 +2,7 @@ package com.example.quizrestwebapp.service;
 
 import com.example.quizrestwebapp.domain.User;
 import com.example.quizrestwebapp.domain.UserRole;
+import com.example.quizrestwebapp.dto.AnswerAnalysis;
 import com.example.quizrestwebapp.repository.UserRepository;
 import lombok.NonNull;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -45,5 +47,18 @@ public class UserService {
         user.setRoles(roles);
         userRepository.save(user);
 
+    }
+
+    public void addToStatistics(User user, int sumOfPoints, List<AnswerAnalysis> answersAnalysis){
+        user.setQuizzesSolved(user.getQuizzesSolved()+1);       //Todo add additional field in user where ids of quests solved will be present
+        user.setPoints(user.getPoints()+sumOfPoints);
+        for (AnswerAnalysis answer: answersAnalysis) {
+            if (answer.getUserAnswer().equals(answer.getRightAnswer())){
+                user.setAnsweredRight(user.getAnsweredRight()+1);
+            } else {
+                user.setAnsweredWrong(user.getAnsweredWrong()+1);
+            }
+        }
+        userRepository.save(user);
     }
 }

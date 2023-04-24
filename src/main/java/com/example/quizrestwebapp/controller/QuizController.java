@@ -5,12 +5,17 @@ import com.example.quizrestwebapp.assembler.QuizWithQuestionsModelAssembler;
 import com.example.quizrestwebapp.domain.Question;
 import com.example.quizrestwebapp.assembler.QuestionModelAssembler;
 import com.example.quizrestwebapp.domain.Quiz;
+import com.example.quizrestwebapp.domain.User;
 import com.example.quizrestwebapp.dto.AnswerAnalysis;
+import com.example.quizrestwebapp.dto.JwtAuthentication;
 import com.example.quizrestwebapp.dto.UserAnswer;
 import com.example.quizrestwebapp.dto.UserQuizAnswerRequest;
+import com.example.quizrestwebapp.exception.AuthException;
 import com.example.quizrestwebapp.exception.QuizNotFoundException;
 import com.example.quizrestwebapp.repository.QuizRepository;
+import com.example.quizrestwebapp.service.AuthService;
 import com.example.quizrestwebapp.service.QuizService;
+import com.example.quizrestwebapp.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -42,6 +47,10 @@ public class QuizController {
     private final QuizWithQuestionsModelAssembler quizWithQuestionsAssembler;
 
     private final QuestionModelAssembler questionAssembler;
+
+    private final UserService userService;
+
+    private final AuthService authService;
 
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("{id}/questions")
@@ -79,16 +88,23 @@ public class QuizController {
     @PostMapping("{id}/submit")
     public EntityModel<Map<String, Object>> checkAnswers(@PathVariable Long id, @RequestBody UserQuizAnswerRequest request){
 
+        final JwtAuthentication authInfo = authService.getAuthInfo();           //Todo check if there are other ways to get user(maybe create additional function)
+        User user = userService.getByUsername((String) authInfo.getPrincipal())
+                .orElseThrow(() -> new AuthException("User not found"));
+
         ArrayList<String> userAnswers = request.getAnswers()
                 .stream()
                 .map(UserAnswer::getBody)
                 .collect(Collectors.toCollection(ArrayList::new));
+
         List<AnswerAnalysis> answersAnalysis = quizService.createAnswersAnalysis(id, userAnswers);
         int sumOfPoints = answersAnalysis.stream().mapToInt(AnswerAnalysis::getPointsForQuestion).sum();
+
+        userService.addToStatistics(user, sumOfPoints, answersAnalysis);
+
         Map<String, Object> responseBody = new HashMap<>();
         responseBody.put("sumOfPoints", sumOfPoints);
         responseBody.put("answersAnalysis", answersAnalysis);
-
 
         return EntityModel.of(responseBody,
                 linkTo(methodOn(QuizController.class).all()).withRel("quizzes"),

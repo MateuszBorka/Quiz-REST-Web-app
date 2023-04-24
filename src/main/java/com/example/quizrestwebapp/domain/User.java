@@ -1,5 +1,6 @@
 package com.example.quizrestwebapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +36,7 @@ public class User {
     private int quizzesSolved;
 
     private int answeredRight;
-
+    @JsonIgnore
     private int answeredWrong;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
