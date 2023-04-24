@@ -70,7 +70,7 @@ public class User {
         this.password = password;
     }
 
-    public Set<String> getRoleNames() {     //TODO: rewrite this code
+    public Set<String> getRoleNames() {
         if (roles.isEmpty()) {
             return Collections.emptySet();
         }

@@ -20,7 +20,7 @@ public class AuthService {
 
     private final UserService userService;
 
-    private final Map<String, String> refreshStorage = new HashMap<>();  //Todo: thats wrong use of HashMap, needs to repair
+    private final Map<String, String> refreshStorage = new HashMap<>();  //Todo: thats wrong to use there a HashMap, needs to repair, refreshStorage needs new database table.
 
     private final JwtProvider jwtProvider;
 
