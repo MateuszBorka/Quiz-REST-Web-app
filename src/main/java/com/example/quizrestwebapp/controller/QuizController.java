@@ -17,6 +17,7 @@ import com.example.quizrestwebapp.service.AuthService;
 import com.example.quizrestwebapp.service.QuizService;
 import com.example.quizrestwebapp.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -36,7 +37,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("api/quizzes")
 @AllArgsConstructor
 public class QuizController {
-
 
     private final QuizRepository repository;
 
