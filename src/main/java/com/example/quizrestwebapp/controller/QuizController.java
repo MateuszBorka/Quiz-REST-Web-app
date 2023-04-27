@@ -17,7 +17,6 @@ import com.example.quizrestwebapp.service.AuthService;
 import com.example.quizrestwebapp.service.QuizService;
 import com.example.quizrestwebapp.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.security.access.prepost.PreAuthorize;

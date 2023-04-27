@@ -7,6 +7,7 @@ import com.example.quizrestwebapp.dto.JwtResponse;
 import com.example.quizrestwebapp.repository.QuizRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,13 +36,10 @@ public class QuizControllerTest {
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
-
     @Autowired
     private QuizRepository repository;
-
-    @Mock
+    @Autowired
     private QuizModelAssembler quizAssembler;
-
     private String accessToken;
     private String refreshToken;
 
