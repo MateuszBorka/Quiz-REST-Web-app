@@ -1,9 +1,11 @@
 package com.example.quizrestwebapp.controller;
 
 import com.example.quizrestwebapp.assembler.QuizModelAssembler;
+import com.example.quizrestwebapp.domain.Quiz;
 import com.example.quizrestwebapp.dto.JwtRequest;
 import com.example.quizrestwebapp.dto.JwtResponse;
 import com.example.quizrestwebapp.repository.QuizRepository;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +20,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.List;
+import java.util.Objects;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -30,7 +36,7 @@ public class QuizControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Mock
+    @Autowired
     private QuizRepository repository;
 
     @Mock
@@ -62,6 +68,9 @@ public class QuizControllerTest {
     @Test
     public void testAll() throws Exception{
 
+        List<Quiz> shouldBeQuizzes = repository.findAll();
+        assertTrue(shouldBeQuizzes.size() >= 2, "Database isn't properly initialized for test");
+
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/quizzes/")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", "Bearer " + accessToken))
@@ -69,8 +78,13 @@ public class QuizControllerTest {
                 .andReturn();
 
         String responseBody = result.getResponse().getContentAsString();
-
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode responseJson = objectMapper.readTree(responseBody);
+        JsonNode actualQuizzes = responseJson.get("_embedded").get("quizzes");
         System.out.println("Hello world!");
+        for(int i = 0; i < shouldBeQuizzes.size(); i++){
+            assertTrue(Objects.equals(shouldBeQuizzes.get(i).getTitle(), actualQuizzes.get(i).get("title").asText()));
+        }
     }
 
 }
