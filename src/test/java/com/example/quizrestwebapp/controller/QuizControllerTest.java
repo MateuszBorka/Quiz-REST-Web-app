@@ -102,7 +102,6 @@ public class QuizControllerTest {
         JsonNode responseJson = objectMapper.readTree(responseBody);
         Question question = quizService.getQuestion(1L, 1L);
         assertEquals(question.getBody(), responseJson.get("_embedded").get("questions").get(0).get("body").asText());
-        System.out.println("Hello");
 
         }
 
