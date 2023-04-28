@@ -20,14 +20,14 @@ public class Quiz {         //Todo add questions count, time limit
 
     private long playedTimes;
 
-    private String creatorNickname;
+    private String creatorNickname;         //Todo create link between quiz Creator and User in the database
 
     private double rating = 1;
 
     private @Id
     @GeneratedValue Long id;
 
-    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Question> questions;
 
 
