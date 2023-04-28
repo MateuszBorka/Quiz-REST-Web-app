@@ -22,7 +22,7 @@ public class QuestionController {
 
 
     @PreAuthorize("hasAuthority('USER')")
-    @GetMapping("/api/quizzes/{quizId}/{id}")
+    @GetMapping("api/quizzes/{quizId}/{id}")
     public EntityModel<Question> one(@PathVariable Long quizId, @PathVariable Long id) {
 
         Question question = quizService.getQuestion(quizId, id);
