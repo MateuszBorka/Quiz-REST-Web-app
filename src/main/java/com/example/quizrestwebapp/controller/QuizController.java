@@ -88,7 +88,7 @@ public class QuizController {
     public EntityModel<Map<String, Object>> checkAnswers(@PathVariable Long id, @RequestBody UserQuizAnswerRequest request){
 
         final JwtAuthentication authInfo = authService.getAuthInfo();           //Todo check if there are other ways to get user(maybe create additional function)
-        User user = userService.getByUsername((String) authInfo.getPrincipal())
+        User user = userService.findUserByUsername((String) authInfo.getPrincipal())
                 .orElseThrow(() -> new AuthException("User not found"));
 
         ArrayList<String> userAnswers = request.getAnswers()

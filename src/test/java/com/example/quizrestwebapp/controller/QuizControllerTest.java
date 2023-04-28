@@ -35,6 +35,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(MockitoExtension.class)
 public class QuizControllerTest {
 
+    private static final String USERNAME = "anton";
+    private static final String PASSWORD = "1234";
+    private static final Long QUIZ_ID = 1L;
+    private static final Long QUESTION_ID = 1L;
+
     @Autowired
     private MockMvc mockMvc;
     @Autowired
@@ -54,7 +59,7 @@ public class QuizControllerTest {
     @BeforeEach
     public void setup() throws Exception {
 
-        JwtRequest jwtRequest = new JwtRequest("anton", "1234");
+        JwtRequest jwtRequest = new JwtRequest(USERNAME, PASSWORD);
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(jwtRequest)))
@@ -99,7 +104,7 @@ public class QuizControllerTest {
 
         String responseBody = result.getResponse().getContentAsString();
         JsonNode responseJson = objectMapper.readTree(responseBody);
-        Question question = quizService.getQuestion(1L, 1L);
+        Question question = quizService.getQuestion(QUIZ_ID, QUESTION_ID);
         assertEquals(question.getBody(), responseJson.get("_embedded").get("questions").get(0).get("body").asText());
 
         }

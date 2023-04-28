@@ -30,7 +30,7 @@ public class UserProfileController {
     @GetMapping("user")
     public EntityModel<User> userProfile() {
         final JwtAuthentication authInfo = authService.getAuthInfo();
-        User user = userService.getByUsername((String) authInfo.getPrincipal())
+        User user = userService.findUserByUsername((String) authInfo.getPrincipal())
                 .orElseThrow(() -> new AuthException("User not found"));
         return EntityModel.of(user);
     }
