@@ -24,7 +24,6 @@ public class UserProfileController {
 
     private final AuthService authService;
     private final UserService userService;
-    private final UserRepository userRepository;
 
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("user")

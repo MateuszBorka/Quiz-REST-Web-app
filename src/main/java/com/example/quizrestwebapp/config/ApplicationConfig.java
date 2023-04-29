@@ -1,9 +1,9 @@
-// What i learned from this project:
+// What I have learned from this project:
 //
 //Enums
-//ManyToOne, OneToMany realationships in JPA
-//
-//
+//ManyToOne, OneToMany relationships in JPA
+//Testing(mockito, assertj)
+//How do tokens work
 //
 //
 
