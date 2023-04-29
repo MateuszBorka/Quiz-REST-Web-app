@@ -37,8 +37,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @AllArgsConstructor
 public class QuizController {
 
-    private final QuizRepository repository;
-
     private final QuizService quizService;
 
     private final QuizModelAssembler quizAssembler;
@@ -54,7 +52,7 @@ public class QuizController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("{id}/questions")
     public CollectionModel<EntityModel<Question>> getQuestionsByQuizId(@PathVariable Long id){
-        Quiz quiz = repository.findById(id)
+        Quiz quiz = quizService.findQuizById(id)
                 .orElseThrow(() -> new QuizNotFoundException(id));
 
         List<EntityModel<Question>> questions = quiz.getQuestions().stream()
@@ -67,7 +65,7 @@ public class QuizController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("{id}")
     public EntityModel<Quiz> getQuizById(@PathVariable Long id) {
-        Quiz quiz = repository.findById(id)
+        Quiz quiz = quizService.findQuizById(id)
                 .orElseThrow(() -> new QuizNotFoundException(id));
 
         return quizWithQuestionsAssembler.toModel(quiz);
@@ -76,7 +74,7 @@ public class QuizController {
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/")
     public CollectionModel<EntityModel<Quiz>> all() {
-        List<EntityModel<Quiz>> quizzes = repository.findAll().stream()
+        List<EntityModel<Quiz>> quizzes = quizService.findAllQuizzes().stream()
                 .map(quizAssembler::toModel)
                 .collect(Collectors.toList());
 

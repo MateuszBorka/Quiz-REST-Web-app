@@ -23,6 +23,13 @@ public class QuizService {
         this.quizRepository = quizRepository;
     }
 
+    public Optional<Quiz> findQuizById(Long id){
+        return quizRepository.findById(id);
+    }
+
+    public List<Quiz> findAllQuizzes(){
+        return quizRepository.findAll();
+    }
 
     public Question getQuestion(Long quizId, Long questionId) {
         Optional<Quiz> quizOptional = quizRepository.findById(quizId);
