@@ -20,19 +20,10 @@ public class LoadDatabaseToTest {
 
     private static final Logger log = LoggerFactory.getLogger(LoadDatabaseToTest.class);
 
-
-    private final QuizFactory quizFactory;
-    private final UserRepository userRepository;
-
     private final UserService userService;
 
-
     @Autowired
-    public LoadDatabaseToTest(QuizFactory quizFactory,
-                              UserRepository userRepository,
-                              UserService userService) {
-        this.quizFactory = quizFactory;
-        this.userRepository = userRepository;
+    public LoadDatabaseToTest(UserService userService) {
         this.userService = userService;
     }
 
@@ -56,7 +47,7 @@ public class LoadDatabaseToTest {
             questions1.add(new Question("What is the capital of France?",
                     Arrays.asList(rightAnswer, new Answer("Madrid"), new Answer("Berlin"), new Answer("Rome")),
                     rightAnswer, 10, 70.0f));
-            Quiz quiz1 = quizFactory.createQuiz("General Knowledge Quiz", 2, "admin", questions1);
+            Quiz quiz1 = Quiz.createQuiz("General Knowledge Quiz", 2, "admin", questions1);
 
 
 
@@ -69,7 +60,7 @@ public class LoadDatabaseToTest {
             questions2.add(new Question("Who is the CEO of Tesla?",
                     Arrays.asList(new Answer("Bill Gates"), new Answer("Steve Jobs"), rightAnswer, new Answer("Mark Zuckerberg")),
                     rightAnswer, 10, 80.0f));
-            Quiz quiz2 = quizFactory.createQuiz("Science and Technology Quiz", 3, "admin", questions2);
+            Quiz quiz2 = Quiz.createQuiz("Science and Technology Quiz", 3, "admin", questions2);
 
             log.info("Preloading..." + quizRepository.save(quiz1));
             log.info("Preloading..." + quizRepository.save(quiz2));

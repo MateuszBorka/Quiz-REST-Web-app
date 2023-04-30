@@ -4,24 +4,23 @@ import com.example.quizrestwebapp.dto.AnswerAnalysis;
 import com.example.quizrestwebapp.repository.QuizRepository;
 import com.example.quizrestwebapp.domain.Question;
 import com.example.quizrestwebapp.domain.Quiz;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import com.example.quizrestwebapp.dto.CreateQuizRequest;
+import com.example.quizrestwebapp.dto.UserQuestion;
+import com.example.quizrestwebapp.domain.Answer;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import com.example.quizrestwebapp.dto.UserAnswerWithItRight;
+
+import java.util.*;
 
 @Service
+@AllArgsConstructor
 public class QuizService {
 
     private final QuizRepository quizRepository;
-
-
-    public QuizService(QuizRepository quizRepository) {
-        this.quizRepository = quizRepository;
-    }
 
     public Optional<Quiz> findQuizById(Long id){
         return quizRepository.findById(id);
@@ -46,22 +45,6 @@ public class QuizService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Quiz not found");
         }
     }
-
-//    public List<Boolean> checkIfQuizAnswersRight(Long quizId, ArrayList<UserAnswer> userAnswers){
-//        Optional<Quiz> quizOptional = quizRepository.findById(quizId);
-//        Quiz quiz;
-//        if (quizOptional.isPresent()) {
-//            quiz = quizOptional.get();
-//        } else {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Quiz not found");
-//        }
-//        List<Question> questions = quiz.getQuestions();
-//        ArrayList<Boolean> isRight = new ArrayList<>();
-//        for(int i = 0; i < userAnswers.size(); i++){
-//            isRight.add(Objects.equals(userAnswers.get(i).getBody(), questions.get(i).getBody()));
-//        }
-//        return isRight;
-//    }
 
     public List<AnswerAnalysis> createAnswersAnalysis(Long quizId, ArrayList<String> userAnswers){
 
@@ -91,6 +74,39 @@ public class QuizService {
         }
         return answerAnalysis;
     }
+
+
+    public Quiz createQuiz(CreateQuizRequest request) {
+        List<Question> questions = new ArrayList<>();
+
+        for (UserQuestion userQuestion : request.getQuestions()) {
+            List<Answer> answers = new ArrayList<>();
+            Answer rightAnswer = null;
+            for (UserAnswerWithItRight userAnswer : userQuestion.getAnswers()) {
+                Answer answer = new Answer(userAnswer.getBody());
+                if (userAnswer.isRight()) {
+                    rightAnswer = answer;
+                }
+                answers.add(answer);
+            }
+            Question question = new Question(userQuestion.getBody(), answers, rightAnswer,
+                    userQuestion.getPointsForRightAnswer(), 0.0f);
+            questions.add(question);
+        }
+
+
+        Quiz quiz = Quiz.createQuiz(request.getTitle(), request.getDifficulty(), "admin", questions);
+        return quizRepository.save(quiz);
+    }
+
+
+
+
+
+
+
+
+
 
 
 

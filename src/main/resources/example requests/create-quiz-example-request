@@ -1,0 +1,42 @@
+{
+	"title": "Example Quiz",
+    "difficulty" : 1,
+	"questions": [
+		{
+			"pointsForRightAnswer": 1,
+			"body": "What is the capital city of France?",
+			"answers": [
+				{
+					"body": "Paris",
+					"isRight": true
+				},
+				{
+					"body": "Madrid",
+					"isRight": false
+				},
+				{
+					"body": "Rome",
+					"isRight": false
+				}
+			]
+		},
+		{
+			"pointsForRightAnswer": 1,
+			"body": "What is the largest planet in our solar system?",
+			"answers": [
+				{
+					"body": "Jupiter",
+					"isRight": true
+				},
+				{
+					"body": "Saturn",
+					"isRight": false
+				},
+				{
+					"body": "Mars",
+					"isRight": false
+				}
+			]
+		}
+	]
+}

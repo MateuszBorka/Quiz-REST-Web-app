@@ -38,6 +38,13 @@ public class Quiz {         //Todo add questions count, time limit
         this.questions = questions;
     }
 
+    public static Quiz createQuiz(String name, int level, String createdBy, List<Question> questions) {
+        Quiz quiz = new Quiz(name, level, createdBy, questions);
+        for (Question question : questions) {
+            question.setQuiz(quiz);
+        }
+        return quiz;
+    }
 
     @Override
     public String toString() {
@@ -57,7 +64,10 @@ public class Quiz {         //Todo add questions count, time limit
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Quiz quiz = (Quiz) o;
-        return difficulty == quiz.difficulty && playedTimes == quiz.playedTimes && Double.compare(quiz.rating, rating) == 0 && Objects.equals(title, quiz.title) && Objects.equals(creatorNickname, quiz.creatorNickname) && Objects.equals(id, quiz.id) && Objects.equals(questions, quiz.questions);
+        return difficulty == quiz.difficulty && playedTimes == quiz.playedTimes &&
+                Double.compare(quiz.rating, rating) == 0 && Objects.equals(title, quiz.title) &&
+                Objects.equals(creatorNickname, quiz.creatorNickname) && Objects.equals(id, quiz.id) &&
+                Objects.equals(questions, quiz.questions);
     }
 
     @Override

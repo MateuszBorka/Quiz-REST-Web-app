@@ -10,7 +10,6 @@
 
 package com.example.quizrestwebapp.config;
 
-import com.example.quizrestwebapp.domain.QuizFactory;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
@@ -42,8 +41,4 @@ public class ApplicationConfig {
         return new HikariDataSource(config);
     }
 
-    @Bean
-    public QuizFactory quizFactory() {
-        return new QuizFactory();
-    }
 }
