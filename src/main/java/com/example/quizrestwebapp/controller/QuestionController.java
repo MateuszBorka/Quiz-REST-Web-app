@@ -1,9 +1,8 @@
 package com.example.quizrestwebapp.controller;
 
-import com.example.quizrestwebapp.repository.QuestionRepository;
-import com.example.quizrestwebapp.service.QuizService;
 import com.example.quizrestwebapp.assembler.QuestionModelAssembler;
 import com.example.quizrestwebapp.domain.Question;
+import com.example.quizrestwebapp.service.QuizService;
 import lombok.AllArgsConstructor;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.security.access.prepost.PreAuthorize;

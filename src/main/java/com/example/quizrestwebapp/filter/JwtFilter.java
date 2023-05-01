@@ -1,5 +1,6 @@
 package com.example.quizrestwebapp.filter;
 
+import com.example.quizrestwebapp.dto.JwtAuthentication;
 import com.example.quizrestwebapp.service.JwtProvider;
 import com.example.quizrestwebapp.service.JwtUtils;
 import io.jsonwebtoken.Claims;
@@ -14,10 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
-import com.example.quizrestwebapp.dto.JwtAuthentication;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @Slf4j
 @Component

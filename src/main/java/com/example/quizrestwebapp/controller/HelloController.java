@@ -1,13 +1,13 @@
 package com.example.quizrestwebapp.controller;
 
+import com.example.quizrestwebapp.dto.JwtAuthentication;
+import com.example.quizrestwebapp.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.quizrestwebapp.dto.JwtAuthentication;
-import com.example.quizrestwebapp.service.AuthService;
 
 
 @RestController

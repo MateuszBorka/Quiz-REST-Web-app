@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>Quiz-REST-Web-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>Quiz-REST-Web-app</name>
     <description>Quiz-REST-Web-app</description>
     <properties>

@@ -5,7 +5,6 @@ import com.example.quizrestwebapp.domain.Question;
 import com.example.quizrestwebapp.domain.Quiz;
 import com.example.quizrestwebapp.dto.JwtRequest;
 import com.example.quizrestwebapp.dto.JwtResponse;
-import com.example.quizrestwebapp.exception.QuizNotFoundException;
 import com.example.quizrestwebapp.repository.QuizRepository;
 import com.example.quizrestwebapp.service.QuizService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,12 +22,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
-import java.util.Objects;
 
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc

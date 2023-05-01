@@ -6,9 +6,7 @@ import com.example.quizrestwebapp.dto.AnswerAnalysis;
 import com.example.quizrestwebapp.exception.UserNotFoundException;
 import com.example.quizrestwebapp.repository.UserRepository;
 import lombok.NonNull;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.HashSet;
 import java.util.List;

@@ -1,0 +1,16 @@
+#Dockerfile isn't working
+
+FROM openjdk:17-jdk-alpine
+
+FROM postgres:latest
+ENV POSTGRES_USER postgres
+ENV POSTGRES_PASSWORD 12341234
+ENV POSTGRES_DB postgres
+
+WORKDIR /app
+
+COPY target/Quiz-REST-Web-app-0.0.1-SNAPSHOT.war /app/app.war
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "app.war"]

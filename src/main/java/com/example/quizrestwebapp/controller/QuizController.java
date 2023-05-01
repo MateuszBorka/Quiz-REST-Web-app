@@ -1,9 +1,9 @@
 package com.example.quizrestwebapp.controller;
 
+import com.example.quizrestwebapp.assembler.QuestionModelAssembler;
 import com.example.quizrestwebapp.assembler.QuizModelAssembler;
 import com.example.quizrestwebapp.assembler.QuizWithQuestionsModelAssembler;
 import com.example.quizrestwebapp.domain.Question;
-import com.example.quizrestwebapp.assembler.QuestionModelAssembler;
 import com.example.quizrestwebapp.domain.Quiz;
 import com.example.quizrestwebapp.domain.User;
 import com.example.quizrestwebapp.dto.AnswerAnalysis;
@@ -12,7 +12,6 @@ import com.example.quizrestwebapp.dto.UserAnswer;
 import com.example.quizrestwebapp.dto.UserQuizAnswerRequest;
 import com.example.quizrestwebapp.exception.AuthException;
 import com.example.quizrestwebapp.exception.QuizNotFoundException;
-import com.example.quizrestwebapp.repository.QuizRepository;
 import com.example.quizrestwebapp.service.AuthService;
 import com.example.quizrestwebapp.service.QuizService;
 import com.example.quizrestwebapp.service.UserService;
@@ -24,10 +23,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.List;
-
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -108,6 +106,4 @@ public class QuizController {
                 linkTo(methodOn(QuizController.class).getQuizById(id)).withRel("quiz"),
                 linkTo(methodOn(QuizController.class).getQuestionsByQuizId(id)).withRel("questions"));
     }
-
-
 }

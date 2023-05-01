@@ -1,19 +1,20 @@
 package com.example.quizrestwebapp;
 
-import com.example.quizrestwebapp.domain.*;
+import com.example.quizrestwebapp.domain.Answer;
+import com.example.quizrestwebapp.domain.Question;
+import com.example.quizrestwebapp.domain.Quiz;
 import com.example.quizrestwebapp.repository.QuizRepository;
-import com.example.quizrestwebapp.repository.UserRepository;
 import com.example.quizrestwebapp.service.UserService;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
-
-import java.util.*;
-
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class LoadDatabaseToTest {
