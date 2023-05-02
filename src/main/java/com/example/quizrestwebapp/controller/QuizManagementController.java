@@ -24,7 +24,4 @@ public class QuizManagementController {
         quizService.createQuiz(request);
         return null;
     }
-
-
-
 }
