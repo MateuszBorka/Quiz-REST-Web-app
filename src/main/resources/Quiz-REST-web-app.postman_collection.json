@@ -249,7 +249,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/quizzes/3",
+							"raw": "http://localhost:8080/api/quizzes/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -258,7 +258,7 @@
 							"path": [
 								"api",
 								"quizzes",
-								"3"
+								"1"
 							]
 						}
 					},
