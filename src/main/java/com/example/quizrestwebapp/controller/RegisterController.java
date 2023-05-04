@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class RegisterController {
 
-     private final RegisterService registerService;
+    private final RegisterService registerService;
+
     @PostMapping("register")
-    public ResponseEntity<JwtResponse> registration(@RequestBody UserRegisterRequest userRegisterRequest){
+    public ResponseEntity<JwtResponse> registration(@RequestBody UserRegisterRequest userRegisterRequest) {
         JwtResponse token = registerService.register(userRegisterRequest.getLogin(),
                 userRegisterRequest.getPassword(),
                 userRegisterRequest.getEmail(),

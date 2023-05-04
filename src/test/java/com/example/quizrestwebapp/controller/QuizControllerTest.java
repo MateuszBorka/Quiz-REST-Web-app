@@ -104,6 +104,6 @@ public class QuizControllerTest {
         Question question = quizService.getQuestion(QUIZ_ID, QUESTION_ID);
         assertEquals(question.getBody(), responseJson.get("_embedded").get("questions").get(0).get("body").asText());
 
-        }
+    }
 
 }

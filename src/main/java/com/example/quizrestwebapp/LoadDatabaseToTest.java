@@ -35,8 +35,7 @@ public class LoadDatabaseToTest {
 
 
             userService.createUser("anton", "1234", "anton@gmail.com", "USER");
-            userService.createUser("ivan", "12345", "ivan@pw.edu.pl","ADMIN");
-
+            userService.createUser("ivan", "12345", "ivan@pw.edu.pl", "ADMIN");
 
 
             List<Question> questions1 = new ArrayList<>();
@@ -51,7 +50,6 @@ public class LoadDatabaseToTest {
             Quiz quiz1 = Quiz.createQuiz("General Knowledge Quiz", 2, "admin", questions1);
 
 
-
             List<Question> questions2 = new ArrayList<>();
             rightAnswer = new Answer("H2O");
             questions2.add(new Question("What is the formula for water?",
@@ -61,7 +59,7 @@ public class LoadDatabaseToTest {
             questions2.add(new Question("Who is the CEO of Tesla?",
                     Arrays.asList(new Answer("Bill Gates"), new Answer("Steve Jobs"), rightAnswer, new Answer("Mark Zuckerberg")),
                     rightAnswer, 10, 80.0f));
-            Quiz quiz2 =Quiz.createQuiz("Science and Technology Quiz", 3, "admin", questions2);
+            Quiz quiz2 = Quiz.createQuiz("Science and Technology Quiz", 3, "admin", questions2);
 
             log.info("Preloading..." + quizRepository.save(quiz1));
             log.info("Preloading..." + quizRepository.save(quiz2));

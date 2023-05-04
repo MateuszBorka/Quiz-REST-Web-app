@@ -17,8 +17,8 @@ public class RegisterService {
 
 
     public JwtResponse register(String username, String password,
-                                String email, List<String> userRoles){
-        if (userService.findUserByUsername(username).isPresent() || userService.findUserByEmail(email).isPresent()){
+                                String email, List<String> userRoles) {
+        if (userService.findUserByUsername(username).isPresent() || userService.findUserByEmail(email).isPresent()) {
             throw new UserAlreadyExistsException("A user with the same username or email already exists.");
         }
 

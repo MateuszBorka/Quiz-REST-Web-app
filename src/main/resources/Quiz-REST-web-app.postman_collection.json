@@ -1,545 +1,545 @@
 {
-	"info": {
-		"_postman_id": "8c4ac2ab-62dd-476b-9015-fda6019ec1c1",
-		"name": "Quiz-REST-web-app",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25929335"
-	},
-	"item": [
-		{
-			"name": "Auth controller",
-			"item": [
-				{
-					"name": "Login User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"login\": \"anton\",\n    \"password\": \"1234\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login Admin",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"login\": \"ivan\",\n    \"password\": \"12345\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get new access token",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIifOiJhbnRvbiIsImV4cCI6MTY4MzI0MDI3NCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.cfzq6QwXcoChvHaqdB_4I7yZ0tFyAR96hJwZfkkrCyU6SNhP70lF9FodCdurWnDiJRE-UX-b8nWX6nWMPpudmw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/token",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"token"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get new access and refresh tokens",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY1NTc5NDE2NCwicm9sZXMiOlsiVVNFUiJdLCJmaXJzdE5hbWUiOiLQkNC90YLQvtC9In0.hJ_j6BjysvP2Qv2Lt06m8FwE-U4AHRjVQ9BpBy6fJIycUDZxBSAhoeFucaOGFgukTMfICZbgEvna9OuwqYzzwQ",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY1ODM4NTg2NH0.gfE8Gr_1Sp_Um3vXG2EaDgqz6p9iLo1_wZgKksme13pg2q4cXVyShBtMTZ0ApfdcGzXcJ2MUoFHtTJCMj8ROUQ\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/refresh",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"refresh"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Quiz controller",
-			"item": [
-				{
-					"name": "Check users quiz answers",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzI0MTExOCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.7KssIgCBqUEVaIQqC4_1Tpvu_3BTqZ62-sDiUI88SbS77b7D74q_yoNljvNrEpH08ld_YEStT8RX7d5FcfpoVA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MjIwMDkwNSwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.r1I8_u1iTB83ERWTB7OC1TYGo7oRMBqzJIT71fWxtueloGdmcvcisHo2rVu_PQzTAzGNe3u-H5fG5vXuLR_A5A",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"quizId\": 1,\r\n  \"answers\": [\r\n    {\r\n        \"body\": \"4\"\r\n    },\r\n    {\r\n        \"body\": \"Madrid\"\r\n    }\r\n  ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/quizzes/1/submit",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"quizzes",
-								"1",
-								"submit"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all quizzes",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzA2ODk0NCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.fo9LNcwTO6dg8LdnZIdwvKaK4j0JVaxnDbKV1OLrXDoZZ2N1bKvYQZOStZSFubzGOr3wItwys603AfQzIAVLIw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/quizzes/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"quizzes",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get quiz number 1",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzA2NjIzNywicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.65FRjwLM75UtonMv0rsPISNlUnLm4x2JyBg692iX8LqvRFOAyXsnk_XxAebu3UHNQwsh7opAAFX56eLMy9Ocgg",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/quizzes/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"quizzes",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get quiz's number 1 questions",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzA2ODkxOSwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.WbSYtUVcUNGeA7OpsO_UV3UDhRevI2CMSAmV8sAeg-FkZFTW7DVzZmw5PJe7x0vTKHMd7TN91m-HhCGHvaQFzw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/quizzes/1/questions",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"quizzes",
-								"1",
-								"questions"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Hello controller",
-			"item": [
-				{
-					"name": "Hello User Request",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MjI5MDQ0OCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.o0U53OuHuvyZ5n8HDjPl1X0pELUGCV3dSoPCTNlgXrxSn0pa2wmIGfVEwKH32LzDqZAa6zGt8Se6W9lcHoKATg",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/hello/user",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"hello",
-								"user"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Hello Admin Request",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY1NTc5MzYxNiwicm9sZXMiOlsiVVNFUiJdLCJmaXJzdE5hbWUiOiLQkNC90YLQvtC9In0.2JBqOWBOmO9a93nwiBgFvf6LvATMw-DALRlSwjFbshhu5RP110NIg5Aod_V0r1WtNDAbuzsHFxk7N-chy4sHQg",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/hello/admin",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"hello",
-								"admin"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User profile controller",
-			"item": [
-				{
-					"name": "Get user profile info",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzI0MTExOCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.7KssIgCBqUEVaIQqC4_1Tpvu_3BTqZ62-sDiUI88SbS77b7D74q_yoNljvNrEpH08ld_YEStT8RX7d5FcfpoVA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/user",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"user"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Quiz management controller",
-			"item": [
-				{
-					"name": "Create quiz request",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzI0MTExOCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.7KssIgCBqUEVaIQqC4_1Tpvu_3BTqZ62-sDiUI88SbS77b7D74q_yoNljvNrEpH08ld_YEStT8RX7d5FcfpoVA",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"title\": \"Example Quiz\",\r\n    \"difficulty\" : 1, \r\n\t\"questions\": [\r\n\t\t{\r\n\t\t\t\"pointsForRightAnswer\": 1,\r\n\t\t\t\"body\": \"What is the capital city of France?\",\r\n\t\t\t\"answers\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Paris\",\r\n\t\t\t\t\t\"isRight\": true\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Madrid\",\r\n\t\t\t\t\t\"isRight\": false\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Rome\",\r\n\t\t\t\t\t\"isRight\": false\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"pointsForRightAnswer\": 1,\r\n\t\t\t\"body\": \"What is the largest planet in our solar system?\",\r\n\t\t\t\"answers\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Jupiter\",\r\n\t\t\t\t\t\"isRight\": true\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Saturn\",\r\n\t\t\t\t\t\"isRight\": false\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Mars\",\r\n\t\t\t\t\t\"isRight\": false\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/create/quiz",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"create",
-								"quiz"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Question controller",
-			"item": [
-				{
-					"name": "Get single question",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzA2ODk0NCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.fo9LNcwTO6dg8LdnZIdwvKaK4j0JVaxnDbKV1OLrXDoZZ2N1bKvYQZOStZSFubzGOr3wItwys603AfQzIAVLIw",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/quizzes/1/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"quizzes",
-								"1",
-								"1"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Register controller",
-			"item": [
-				{
-					"name": "Register User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"login\": \"Mateusz\",\n    \"password\": \"1111\",\n    \"email\": \"borko.m.126@gmail.com\",\n    \"userRoles\" : [\n        \"USER\"\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/auth/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "8c4ac2ab-62dd-476b-9015-fda6019ec1c1",
+    "name": "Quiz-REST-web-app",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "25929335"
+  },
+  "item": [
+    {
+      "name": "Auth controller",
+      "item": [
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"login\": \"anton\",\n    \"password\": \"1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"login\": \"ivan\",\n    \"password\": \"12345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get new access token",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIifOiJhbnRvbiIsImV4cCI6MTY4MzI0MDI3NCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.cfzq6QwXcoChvHaqdB_4I7yZ0tFyAR96hJwZfkkrCyU6SNhP70lF9FodCdurWnDiJRE-UX-b8nWX6nWMPpudmw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/token",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get new access and refresh tokens",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY1NTc5NDE2NCwicm9sZXMiOlsiVVNFUiJdLCJmaXJzdE5hbWUiOiLQkNC90YLQvtC9In0.hJ_j6BjysvP2Qv2Lt06m8FwE-U4AHRjVQ9BpBy6fJIycUDZxBSAhoeFucaOGFgukTMfICZbgEvna9OuwqYzzwQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY1ODM4NTg2NH0.gfE8Gr_1Sp_Um3vXG2EaDgqz6p9iLo1_wZgKksme13pg2q4cXVyShBtMTZ0ApfdcGzXcJ2MUoFHtTJCMj8ROUQ\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/refresh",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "refresh"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Quiz controller",
+      "item": [
+        {
+          "name": "Check users quiz answers",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzI0MTExOCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.7KssIgCBqUEVaIQqC4_1Tpvu_3BTqZ62-sDiUI88SbS77b7D74q_yoNljvNrEpH08ld_YEStT8RX7d5FcfpoVA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MjIwMDkwNSwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.r1I8_u1iTB83ERWTB7OC1TYGo7oRMBqzJIT71fWxtueloGdmcvcisHo2rVu_PQzTAzGNe3u-H5fG5vXuLR_A5A",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"quizId\": 1,\r\n  \"answers\": [\r\n    {\r\n        \"body\": \"4\"\r\n    },\r\n    {\r\n        \"body\": \"Madrid\"\r\n    }\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/quizzes/1/submit",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "quizzes",
+                "1",
+                "submit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all quizzes",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzA2ODk0NCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.fo9LNcwTO6dg8LdnZIdwvKaK4j0JVaxnDbKV1OLrXDoZZ2N1bKvYQZOStZSFubzGOr3wItwys603AfQzIAVLIw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/quizzes/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "quizzes",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get quiz number 1",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzA2NjIzNywicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.65FRjwLM75UtonMv0rsPISNlUnLm4x2JyBg692iX8LqvRFOAyXsnk_XxAebu3UHNQwsh7opAAFX56eLMy9Ocgg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/quizzes/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "quizzes",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get quiz's number 1 questions",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzA2ODkxOSwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.WbSYtUVcUNGeA7OpsO_UV3UDhRevI2CMSAmV8sAeg-FkZFTW7DVzZmw5PJe7x0vTKHMd7TN91m-HhCGHvaQFzw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/quizzes/1/questions",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "quizzes",
+                "1",
+                "questions"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Hello controller",
+      "item": [
+        {
+          "name": "Hello User Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MjI5MDQ0OCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.o0U53OuHuvyZ5n8HDjPl1X0pELUGCV3dSoPCTNlgXrxSn0pa2wmIGfVEwKH32LzDqZAa6zGt8Se6W9lcHoKATg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/hello/user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "hello",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Hello Admin Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY1NTc5MzYxNiwicm9sZXMiOlsiVVNFUiJdLCJmaXJzdE5hbWUiOiLQkNC90YLQvtC9In0.2JBqOWBOmO9a93nwiBgFvf6LvATMw-DALRlSwjFbshhu5RP110NIg5Aod_V0r1WtNDAbuzsHFxk7N-chy4sHQg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/hello/admin",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "hello",
+                "admin"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User profile controller",
+      "item": [
+        {
+          "name": "Get user profile info",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzI0MTExOCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.7KssIgCBqUEVaIQqC4_1Tpvu_3BTqZ62-sDiUI88SbS77b7D74q_yoNljvNrEpH08ld_YEStT8RX7d5FcfpoVA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/user",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Quiz management controller",
+      "item": [
+        {
+          "name": "Create quiz request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzI0MTExOCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.7KssIgCBqUEVaIQqC4_1Tpvu_3BTqZ62-sDiUI88SbS77b7D74q_yoNljvNrEpH08ld_YEStT8RX7d5FcfpoVA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\t\"title\": \"Example Quiz\",\r\n    \"difficulty\" : 1, \r\n\t\"questions\": [\r\n\t\t{\r\n\t\t\t\"pointsForRightAnswer\": 1,\r\n\t\t\t\"body\": \"What is the capital city of France?\",\r\n\t\t\t\"answers\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Paris\",\r\n\t\t\t\t\t\"isRight\": true\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Madrid\",\r\n\t\t\t\t\t\"isRight\": false\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Rome\",\r\n\t\t\t\t\t\"isRight\": false\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"pointsForRightAnswer\": 1,\r\n\t\t\t\"body\": \"What is the largest planet in our solar system?\",\r\n\t\t\t\"answers\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Jupiter\",\r\n\t\t\t\t\t\"isRight\": true\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Saturn\",\r\n\t\t\t\t\t\"isRight\": false\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"body\": \"Mars\",\r\n\t\t\t\t\t\"isRight\": false\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/create/quiz",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "create",
+                "quiz"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Question controller",
+      "item": [
+        {
+          "name": "Get single question",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4MzA2ODk0NCwicm9sZXMiOlsiVVNFUiJdLCJ1c2VybmFtZSI6ImFudG9uIn0.fo9LNcwTO6dg8LdnZIdwvKaK4j0JVaxnDbKV1OLrXDoZZ2N1bKvYQZOStZSFubzGOr3wItwys603AfQzIAVLIw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/quizzes/1/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "quizzes",
+                "1",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Register controller",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"login\": \"Mateusz\",\n    \"password\": \"1111\",\n    \"email\": \"borko.m.126@gmail.com\",\n    \"userRoles\" : [\n        \"USER\"\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }

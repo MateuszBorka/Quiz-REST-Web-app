@@ -14,11 +14,11 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class UserService{
+public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -30,7 +30,7 @@ public class UserService{
         return userRepository.findUserByEmail(email);
     }
 
-    public void createUser(@NonNull String username,  @NonNull String password, @NonNull String email, @NonNull String... roleNames){
+    public void createUser(@NonNull String username, @NonNull String password, @NonNull String email, @NonNull String... roleNames) {
 
         User user = new User();
         user.setUsername(username);
@@ -38,7 +38,7 @@ public class UserService{
         user.setEmail(email);
 
         Set<UserRole> roles = new HashSet<>();
-        for (String role : roleNames){
+        for (String role : roleNames) {
             roles.add(new UserRole(role));
         }
 
@@ -47,14 +47,14 @@ public class UserService{
 
     }
 
-    public void addToStatistics(User user, int sumOfPoints, List<AnswerAnalysis> answersAnalysis){
-        user.setQuizzesSolved(user.getQuizzesSolved()+1);       //Todo add additional field in user where ids of quests solved will be present
-        user.setPoints(user.getPoints()+sumOfPoints);
-        for (AnswerAnalysis answer: answersAnalysis) {
-            if (answer.getUserAnswer().equals(answer.getRightAnswer())){
-                user.setAnsweredRight(user.getAnsweredRight()+1);
+    public void addToStatistics(User user, int sumOfPoints, List<AnswerAnalysis> answersAnalysis) {
+        user.setQuizzesSolved(user.getQuizzesSolved() + 1);
+        user.setPoints(user.getPoints() + sumOfPoints);
+        for (AnswerAnalysis answer : answersAnalysis) {
+            if (answer.getUserAnswer().equals(answer.getRightAnswer())) {
+                user.setAnsweredRight(user.getAnsweredRight() + 1);
             } else {
-                user.setAnsweredWrong(user.getAnsweredWrong()+1);
+                user.setAnsweredWrong(user.getAnsweredWrong() + 1);
             }
         }
         userRepository.save(user);

@@ -35,8 +35,7 @@ public class LoadDatabaseToTest {
 
 
             userService.createUser("anton", "1234", "anton@gmail.com", "USER");
-            userService.createUser("ivan", "12345", "ivan@pw.edu.pl","ADMIN");
-
+            userService.createUser("ivan", "12345", "ivan@pw.edu.pl", "ADMIN");
 
 
             List<Question> questions1 = new ArrayList<>();
@@ -49,7 +48,6 @@ public class LoadDatabaseToTest {
                     Arrays.asList(rightAnswer, new Answer("Madrid"), new Answer("Berlin"), new Answer("Rome")),
                     rightAnswer, 10, 70.0f));
             Quiz quiz1 = Quiz.createQuiz("General Knowledge Quiz", 2, "admin", questions1);
-
 
 
             List<Question> questions2 = new ArrayList<>();

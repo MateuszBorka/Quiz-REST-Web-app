@@ -20,7 +20,9 @@ public class JwtAuthentication implements Authentication {
     private Set<UserRole> roles;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() { return roles; }
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
 
     @Override
     public Object getCredentials() {
@@ -38,7 +40,9 @@ public class JwtAuthentication implements Authentication {
     }
 
     @Override
-    public boolean isAuthenticated() { return authenticated; }
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
 
     @Override
     public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {

@@ -12,7 +12,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Component
 public class QuizModelAssembler {
 
-    public EntityModel<Quiz> toModel(Quiz quiz){
+    public EntityModel<Quiz> toModel(Quiz quiz) {
 
         return EntityModel.of(quiz,
                 WebMvcLinkBuilder.linkTo(methodOn(QuizController.class).getQuizById(quiz.getId())).withSelfRel(),

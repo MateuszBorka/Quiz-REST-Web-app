@@ -24,11 +24,11 @@ public class QuizService {
 
     private final QuizRepository quizRepository;
 
-    public Optional<Quiz> findQuizById(Long id){
+    public Optional<Quiz> findQuizById(Long id) {
         return quizRepository.findById(id);
     }
 
-    public List<Quiz> findAllQuizzes(){
+    public List<Quiz> findAllQuizzes() {
         return quizRepository.findAll();
     }
 
@@ -48,7 +48,7 @@ public class QuizService {
         }
     }
 
-    public List<AnswerAnalysis> createAnswersAnalysis(Long quizId, ArrayList<String> userAnswers){
+    public List<AnswerAnalysis> createAnswersAnalysis(Long quizId, ArrayList<String> userAnswers) {
 
         Optional<Quiz> quizOptional = quizRepository.findById(quizId);
         Quiz quiz;
@@ -63,11 +63,11 @@ public class QuizService {
         List<AnswerAnalysis> answerAnalysis = new ArrayList<>();
 
 
-        for(int i = 0; i < userAnswers.size(); i++){
+        for (int i = 0; i < userAnswers.size(); i++) {
             AnswerAnalysis singleAnswer = new AnswerAnalysis();
             singleAnswer.setUserAnswer(userAnswers.get(i));
             singleAnswer.setRightAnswer(questions.get(i).getRightAnswer().getBody());
-            if (!Objects.equals(userAnswers.get(i), questions.get(i).getRightAnswer().getBody())){
+            if (!Objects.equals(userAnswers.get(i), questions.get(i).getRightAnswer().getBody())) {
                 singleAnswer.setPointsForQuestion(0);
             } else {
                 singleAnswer.setPointsForQuestion(questions.get(i).getPointsForRightAnswer());
@@ -100,16 +100,6 @@ public class QuizService {
         Quiz quiz = Quiz.createQuiz(request.getTitle(), request.getDifficulty(), "admin", questions);
         return quizRepository.save(quiz);
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

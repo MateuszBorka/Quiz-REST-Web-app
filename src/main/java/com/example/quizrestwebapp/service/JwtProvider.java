@@ -33,7 +33,7 @@ public class JwtProvider {
         this.jwtRefreshSecret = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtRefreshSecret));
     }
 
-    public String generateAccessToken(@NonNull User user){
+    public String generateAccessToken(@NonNull User user) {
         final LocalDateTime now = LocalDateTime.now();
         final Instant accessExpirationInstant = now.plusMinutes(3000).atZone(ZoneId.systemDefault()).toInstant(); //Todo: for testing purposes time has changed from 5 to 3000 minutes.
         final Date accessExpiration = Date.from(accessExpirationInstant);
@@ -66,9 +66,9 @@ public class JwtProvider {
         return validateToken(refreshToken, jwtRefreshSecret);
     }
 
-    private boolean validateToken(@NonNull String token, @NonNull Key secret){
+    private boolean validateToken(@NonNull String token, @NonNull Key secret) {
 
-        try{
+        try {
             Jwts.parserBuilder()
                     .setSigningKey(secret)
                     .build()

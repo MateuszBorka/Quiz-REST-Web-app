@@ -36,7 +36,7 @@ public class Question {
         this.pointsForRightAnswer = pointsForRightAnswer;
         this.percentOfPeopleRight = percentOfPeopleRight;
         this.answers = answers;
-        for (Answer answer: answers){
+        for (Answer answer : answers) {
             answer.setQuestion(this);
             answer.setRight(answer == rightAnswer);
         }
@@ -64,9 +64,9 @@ public class Question {
     }
 
     public void setRightAnswer(Answer rightAnswer) {
-        for (Answer answer : answers){
+        for (Answer answer : answers) {
             answer.setRight(false);
-            if (answer == rightAnswer){
+            if (answer == rightAnswer) {
                 answer.setRight(true);
             }
         }

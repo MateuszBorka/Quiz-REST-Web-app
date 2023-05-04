@@ -17,7 +17,8 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class Answer {
 
-    private @Id @GeneratedValue Long id;
+    private @Id
+    @GeneratedValue Long id;
     private String body;
     @JsonIgnore
     private boolean isRight;

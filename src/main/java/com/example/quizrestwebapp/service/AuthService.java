@@ -24,11 +24,11 @@ public class AuthService {
 
     private final JwtProvider jwtProvider;
 
-    public JwtResponse login(@NonNull JwtRequest authRequest){
+    public JwtResponse login(@NonNull JwtRequest authRequest) {
         final User user = userService.findUserByUsername(authRequest.getLogin())
                 .orElseThrow(() -> new AuthException("User not found"));
 
-        if (user.getPassword().equals(authRequest.getPassword())){
+        if (user.getPassword().equals(authRequest.getPassword())) {
             final String accessToken = jwtProvider.generateAccessToken(user);
             final String refreshToken = jwtProvider.generateRefreshToken(user);
             refreshStorage.put(user.getUsername(), refreshToken);
@@ -38,13 +38,13 @@ public class AuthService {
         }
     }
 
-    public JwtResponse getAccessToken(@NonNull String refreshToken){
-        if (jwtProvider.validateRefreshToken(refreshToken)){
+    public JwtResponse getAccessToken(@NonNull String refreshToken) {
+        if (jwtProvider.validateRefreshToken(refreshToken)) {
             final Claims claims = jwtProvider.getRefreshClaims(refreshToken);
             final String username = claims.getSubject();
             final String saveRefreshToken = refreshStorage.get(username);
 
-            if (saveRefreshToken != null && saveRefreshToken.equals(refreshToken)){
+            if (saveRefreshToken != null && saveRefreshToken.equals(refreshToken)) {
 
                 final User user = userService.findUserByUsername(username)
                         .orElseThrow(() -> new AuthException("User not found"));
@@ -52,17 +52,17 @@ public class AuthService {
                 return new JwtResponse(accessToken, null);
             }
         }
-         return new JwtResponse(null, null);
+        return new JwtResponse(null, null);
     }
 
     public JwtResponse refresh(@NonNull String refreshToken) {
-        if (jwtProvider.validateRefreshToken(refreshToken)){
+        if (jwtProvider.validateRefreshToken(refreshToken)) {
 
             final Claims claims = jwtProvider.getRefreshClaims(refreshToken);
             final String username = claims.getSubject();
             final String saveRefreshToken = refreshStorage.get(username);
 
-            if (saveRefreshToken != null && saveRefreshToken.equals(refreshToken)){
+            if (saveRefreshToken != null && saveRefreshToken.equals(refreshToken)) {
                 final User user = userService.findUserByUsername(username)
                         .orElseThrow(() -> new AuthException("User not found"));
                 final String accessToken = jwtProvider.generateAccessToken(user);
@@ -71,10 +71,10 @@ public class AuthService {
                 return new JwtResponse(accessToken, newRefreshToken);
             }
         }
-         throw new AuthException("Invalid jwt token");
+        throw new AuthException("Invalid jwt token");
     }
 
-    public JwtAuthentication getAuthInfo(){
+    public JwtAuthentication getAuthInfo() {
         return (JwtAuthentication) SecurityContextHolder.getContext().getAuthentication();
     }
 }

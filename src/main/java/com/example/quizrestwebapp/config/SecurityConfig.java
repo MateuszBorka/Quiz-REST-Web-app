@@ -20,7 +20,7 @@ public class SecurityConfig {
     private final JwtFilter jwtFilter;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .httpBasic().disable()
                 .csrf().disable()

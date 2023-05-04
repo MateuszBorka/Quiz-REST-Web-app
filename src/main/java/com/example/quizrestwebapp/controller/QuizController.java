@@ -49,7 +49,7 @@ public class QuizController {
 
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("{id}/questions")
-    public CollectionModel<EntityModel<Question>> getQuestionsByQuizId(@PathVariable Long id){
+    public CollectionModel<EntityModel<Question>> getQuestionsByQuizId(@PathVariable Long id) {
         Quiz quiz = quizService.findQuizById(id)
                 .orElseThrow(() -> new QuizNotFoundException(id));
 
@@ -81,7 +81,7 @@ public class QuizController {
 
     @PreAuthorize("hasAuthority('USER')")
     @PostMapping("{id}/submit")
-    public EntityModel<Map<String, Object>> checkAnswers(@PathVariable Long id, @RequestBody UserQuizAnswerRequest request){
+    public EntityModel<Map<String, Object>> checkAnswers(@PathVariable Long id, @RequestBody UserQuizAnswerRequest request) {
 
         final JwtAuthentication authInfo = authService.getAuthInfo();           //Todo check if there are other ways to get user(maybe create additional function)
         User user = userService.findUserByUsername((String) authInfo.getPrincipal())

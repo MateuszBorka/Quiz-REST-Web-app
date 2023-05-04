@@ -34,7 +34,6 @@ public class AuthControllerTest {
         JwtRequest jwtRequest = new JwtRequest("anton", "1234");
 
 
-
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(jwtRequest)))
@@ -44,7 +43,7 @@ public class AuthControllerTest {
 
         JwtResponse actualResponse = objectMapper.readValue(result.getResponse().getContentAsString(), JwtResponse.class);
         assertTrue(actualResponse.getAccessToken().startsWith("eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4")
-        && actualResponse.getRefreshToken().startsWith("eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4"));
+                && actualResponse.getRefreshToken().startsWith("eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbiIsImV4cCI6MTY4"));
     }
 
 }

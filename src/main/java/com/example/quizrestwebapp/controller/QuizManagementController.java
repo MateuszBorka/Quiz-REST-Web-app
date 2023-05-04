@@ -20,7 +20,7 @@ public class QuizManagementController {
 
     @PreAuthorize("hasAuthority('USER') || hasAuthority('ADMIN')")
     @PostMapping("quiz")
-    public EntityModel<Quiz> createQuiz(@RequestBody CreateQuizRequest request){
+    public EntityModel<Quiz> createQuiz(@RequestBody CreateQuizRequest request) {
         quizService.createQuiz(request);
         return null;
     }
