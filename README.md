@@ -1,4 +1,4 @@
-#Quiz-REST-web-app
+# Quiz-REST-web-app
 
 Quiz-REST-web-app: A Java Spring Project for Creating, Solving and Sharing Quizzes
 
@@ -6,14 +6,14 @@ Quiz app is a Java Spring project that follows a REST architecture pattern. It p
 
 Here is a list of frameworks, libraries, and technologies used in this project:
 
-##Development process:
+#### Development process:
 
 -   IntelliJ IDEA: A popular integrated development environment for Java.
 -   Git: A widely used version control system for software development.
 -   Maven: A build automation tool for Java projects.
 -   Lombok: A Java library that helps reduce boilerplate code.
 
-##Architecture:
+#### Architecture:
 
 -   REST pattern: A software architecture style that allows for the creation of lightweight and scalable web services.
 -   Spring: A popular framework for building Java-based web applications.
@@ -23,7 +23,7 @@ Here is a list of frameworks, libraries, and technologies used in this project:
 -   jjwt: A Java library for JSON Web Tokens.
 -   Jackson: A Java library for parsing JSON data.
 
-##Database:
+#### Database:
 
 -   Hikari: A lightweight and fast JDBC connection pool.
 -   Spring Data JPA: A library that simplifies the implementation of JPA repositories.
@@ -31,7 +31,7 @@ Here is a list of frameworks, libraries, and technologies used in this project:
 -   PostgreSQL: A popular open-source relational database management system.
 -   H2: A lightweight in-memory database for testing purposes.
 
-##Testing:
+#### Testing:
 
 -   JUnit: A popular testing framework for Java.
 -   AssertJ: A fluent assertion library for Java.
