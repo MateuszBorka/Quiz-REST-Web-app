@@ -41,9 +41,12 @@ Here is a list of frameworks, libraries, and technologies used in this project:
 
 -   Docker: A containerization platform that simplifies the deployment process.
 
-To test the application, please refer to the readme.txt file in the docker folder for instructions on creating the Docker container. Additionally, you can use the Quiz-REST-web-app.postman_collection.json file in the resources folder to create requests. Your first request should be Login User from Auth Controller folder. You will get response that looks like this:![image](https://user-images.githubusercontent.com/117806124/236453971-80ce0eeb-79e6-41a0-88dc-e8cb6569f211.png)
+To test the application, please refer to the readme.txt file in the docker folder for instructions on creating the Docker container. Additionally, you can use the Quiz-REST-web-app.postman_collection.json file in the resources folder to create requests. Your first request should be Login User from Auth Controller folder. You will get response that looks like this: 
+![image](https://user-images.githubusercontent.com/117806124/236453971-80ce0eeb-79e6-41a0-88dc-e8cb6569f211.png)
 
-Copy accessToken, that will be your authentification key for performing next requests. Chose request that you want to send, then go to the Auth field in Postman and Paste accessToken to the Token field. Now server will respond to you. There is an example with Get all quizzes request: ![image](https://user-images.githubusercontent.com/117806124/236454611-3c50a95e-8aeb-4772-8331-94b1af5e3283.png)
+Copy accessToken, that will be your authentification key for performing next requests. Chose request that you want to send, then go to the Auth field in Postman and Paste accessToken to the Token field. Now server will respond to you. There is an example with Get all quizzes request: 
+![image](https://user-images.githubusercontent.com/117806124/236454611-3c50a95e-8aeb-4772-8331-94b1af5e3283.png)
 
+For testing purposes accessToken won't expire, but in production time of expiration should be set to 5 minutes.
 
 Please note that this application was primarily designed to work with PostgreSQL, but H2 was implemented for the purposes of showcasing the project on GitHub. All code for PostgreSQL is still included in the project.
